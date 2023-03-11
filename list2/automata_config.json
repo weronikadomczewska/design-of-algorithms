@@ -1,0 +1,24 @@
+{
+  "alphabet": "abcd",
+  "beginning_state": "q0",
+  "acceptance_state": "q2",
+  "transition_function": {
+    "a": {"q0": "q0",
+          "q1": "q3",
+          "q2": "q3",
+          "q3": "q3"},
+    "b": {"q0": "q1",
+          "q1": "q3",
+          "q2": "q3",
+          "q3": "q3"},
+    "c": {"q0": "q3",
+          "q1": "q2",
+          "q2": "q3",
+          "q3": "q3"},
+    "d": {"q0": "q3",
+          "q1": "q3",
+          "q2": "q2",
+          "q3": "q3"}
+}}
+
+
