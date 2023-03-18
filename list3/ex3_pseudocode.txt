@@ -1,0 +1,14 @@
+Niech dana będzie MT, która rozstrzyga język A = {axb: a, b € (Σ - {x})*, lal = \bl}.
+1: Jeśli pierwszym symbolem jest x, to przesuń taśmę w prawo. Jeśli
+drugi symbol to u to akceptuj, wpp. odrzuć.
+2: Powtarzaj:
+3: 4: Wykreśl pierwszy niewykreślony symbol i przesuń taśmę w prawo. Przesuń taśmę w prawo, do pierwszego lub wykreślonego ப symbolu.
+5:
+Przesuń taśmę w lewo.
+6: Jeśli symbol to x lub jest wykreślony, to odrzuć, wpp. wykreśl symbol i przesuń taśmę w lewo.
+7:
+8:
+Przesuń taśmę w lewo, do pierwszego wykreślonego symbolu.
+Przesuń taśmę w prawo.
+9: Jeśli symbol jest wykreślony, to odrzuć. Jeśli symbol to x, to wyjdź z pętli i przesuń taśmę w prawo.
+10: Jeśli symbol nie jest wykreślony, to odrzuć. Jeśli jest, to akceptuj.
