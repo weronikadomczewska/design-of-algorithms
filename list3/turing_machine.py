@@ -43,7 +43,6 @@ class TuringMachine:
             elif state == self.rejection_state:
                 print(f"string {text} has been rejected")
                 break
-
         try:
             return transitions[:-1]
         except KeyError:

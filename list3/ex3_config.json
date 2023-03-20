@@ -1,0 +1,58 @@
+{
+  "beginning_state": "q0",
+  "acceptance_state": "qa",
+  "rejection_state": "qr",
+  "tape_alphabet": ["a", "b", "crossed_a", "crossed_b", "x", "blank_sign"],
+"transition_function" : {
+    "a": {
+        "q0": ["q2", "crossed_a", "R"],
+        "q1": ["qr", null, "L"],
+        "q2": ["q2", null, "R"],
+        "q3": ["q4", "crossed_a", "L"],
+        "q4": ["q4", null, "L"],
+        "q5": ["q0", null, null],
+        "q6": ["qr", null, "L"]
+    },
+    "b": {
+        "q0": ["q2", "crossed_b", "R"],
+        "q1": ["qr", null, "L"],
+        "q2": ["q2", null, "R"],
+        "q3": ["q4", "crossed_b", "L"],
+        "q4": ["q4", null, "L"],
+        "q5": ["q0", null, null],
+        "q6": ["qr", null, "L"]
+
+    },
+    "crossed_a": {
+        "q1": ["qr", null, "L"],
+        "q2": ["q2", null, "L"],
+        "q3": ["qr", null, "L"],
+        "q4": ["q5", null, "R"],
+        "q5": ["qr", null, "L"],
+        "q6": ["qa", null, "L"]
+
+    },
+    "crossed_b": {
+        "q1": ["qr", null, "L"],
+        "q2": ["q3", null, "L"],
+        "q3": ["qr", null, "L"],
+        "q4": ["q5", null, "R"],
+        "q5": ["qr", null, "L"],
+        "q6": ["qa", null, "L"]
+
+    },
+    "x": {
+        "q0": ["q1", null, "R"],
+        "q1": ["qr", null, "L"],
+        "q2": ["q2", null, "R"],
+        "q3": ["qr", null, "L"],
+        "q4": ["q4", null, "L"],
+        "q5": ["q6", null, "R"]
+    },
+
+    "blank_sign": {
+        "q1": ["qa", null, "L"],
+        "q2": ["q3", null, "L"]
+    }
+}
+}

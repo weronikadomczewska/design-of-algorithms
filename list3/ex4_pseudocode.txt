@@ -1,0 +1,41 @@
+1. Zweryfikuj, czy układ nawiasów, przecinków i cyfr jest poprawny
+1) Wykonaj GRAF_DO_#
+2) Wróć na początek taśmy
+3) Wykonaj GRAF_OD_#
+
+GRAF_DO_#
+MT sprawdzająca, czy układ symboli do # włącznie jest poprawny.
+1: Jeśli pierwszy symbol to nie [, to odrzuć.
+2: Przesuń głowicę w prawo.
+3: Jeśli symbol to #, to przejdź akceptuj.
+4: Jeśli symbol to nie cyfra inna niż 0, to odrzuć.
+5: Przesuń głowicę w prawo. 6: Jeśli symbol to nie cyfra lub, lub # to odrzuć.
+7: Jeśli symbol to, to przesuń głowicę w prawo i przejdź do 4.
+8: Jeśli symbol to cyfra, to przejdź do 5
+9: Przejdź do 3.
+Przebieg dla wejścia [23, #.
+23. #→ [23, #→ [23, #→ [23,#→ [23, #→ odrzuć
+
+GRAF_OD_#
+MT sprawdzająca, czy układ symboli od # jest poprawny.
+GRAF_OD_#
+1: Przesuwaj głowicę w prawo do #.
+2: Przesuń głowicę w prawo.
+3: Jeśli symbol to ], to przesuń głowicę w prawo, jeśli symbol to nie ப to odrzuć, wpp akceptuj.
+4: Jeśli symbol to nie ( to odrzuć.
+5: Przesuń głowicę w prawo.
+6: Jeśli symbol to nie cyfra inna niż 0, to odrzuć.
+7: Przesuń głowicę w prawo.
+8: Jeśli symbol to nie cyfra lub , to odrzuć.
+9: Jeśli symbol to cyfra, to przejdź do 7.
+10: Przesuń głowicę w prawo.
+11: Jeśli symbol to nie cyfra inna niż 0, to odrzuć.
+12: Przesuń głowicę w prawo.
+13: Jeśli symbol to nie cyfra lub) to odrzuć.
+14: Jeśli symbol to cyfra, to przejdź do 12.
+15: Przejdź do 2.
+Przebieg dla wejścia [2, 3, 4# (23,4)].
+12,3,4 (23,4)] → [2,3,4 (23,4)]u→ [2,3,4# (23,4)Ju→ [2,3,4 (23,4)][2,3,4# (23,4)] → [2,3,4# (234) Ju→
+[2,3,4 (23,4)][2,3,4 (23,4)] → [2, 3, 4# (23.4)]u→ [2,3,4# (23,4)]û akceptuj
+
+Złożoność czasowa O(n)
