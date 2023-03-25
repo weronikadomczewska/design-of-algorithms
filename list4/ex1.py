@@ -1,16 +1,16 @@
 import numpy as np
 
-"""
-Złożoność obliczeniowa:
-długość listy: n
-Przypadek pesymistyczny: największy element na liście jest ostatni
-1. Przypisanie current_max -> 1
-2. Pętla -> n obiegów, w każdym obiegu jedno porównanie -> n porównań
-Czas wykonania: n + 1
-Złożoność: O(n)
-"""
 
 def find_max_value(lst, number_of_elems):
+    """
+    Złożoność obliczeniowa:
+    długość listy: n
+    Przypadek pesymistyczny: największy element na liście jest ostatni
+    1. Przypisanie current_max -> 1
+    2. Pętla -> n obiegów, w każdym obiegu jedno porównanie -> n porównań
+    Czas wykonania: n + 1
+    Złożoność: O(n)
+    """
     current_max = lst[0]
     for i in range(number_of_elems):
         if lst[i] > current_max:
@@ -18,15 +18,15 @@ def find_max_value(lst, number_of_elems):
 
     return current_max
 
-"""
 
-1. Wybranie wartości większej z lst[0], lst[1] -> 1
-2. Wybranie wartości mniejszej z lst[0], lst[1] -> 1
-3. Pętla: n-2 obrotów, w każdym obrocie 5 porównań + 1 przypisanie -> 6 operacji w każdym obrocie, razem 6(n-2) operacji
-Czas wykonania: 1 + 1 + 6(n-2) = 2 + 6n - 12 = 6n - 10
-Złożoność obliczeniowa: O(n) 
-"""
 def find_second_max_value(lst, number_of_elems):
+    """
+    1. Wybranie wartości większej z lst[0], lst[1] -> 1
+    2. Wybranie wartości mniejszej z lst[0], lst[1] -> 1
+    3. Pętla: n-2 obrotów, w każdym obrocie 5 porównań + 1 przypisanie -> 6 operacji w każdym obrocie, razem 6(n-2) operacji
+    Czas wykonania: 1 + 1 + 6(n-2) = 2 + 6n - 12 = 6n - 10
+    Złożoność obliczeniowa: O(n)
+    """
 
     if lst[0] > lst[1]:
         first_max = lst[0]
@@ -47,19 +47,18 @@ def find_second_max_value(lst, number_of_elems):
             second_max = lst[i]
     return second_max
 
-"""
-Złożoność obliczeniowa: 
-1. Przypisanie sum = 0 -> 1
-2. Pętla wykonująca n obiegów i w każdym jedna operacja dodawania -> n
-3. Obliczenie wartości średniej -> 1
-
-Czas wykonania: n + 2
-Złożoność obliczeniowa: O(n)
-
-"""
-
 
 def calc_mean(lst, number_of_elems):
+    """
+    Złożoność obliczeniowa:
+    1. Przypisanie sum = 0 -> 1
+    2. Pętla wykonująca n obiegów i w każdym jedna operacja dodawania -> n
+    3. Obliczenie wartości średniej -> 1
+
+    Czas wykonania: n + 2
+    Złożoność obliczeniowa: O(n)
+
+    """
     sum = 0
     for i in range(number_of_elems):
         sum += lst[i]

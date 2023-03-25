@@ -50,7 +50,6 @@ turing_machine = TuringMachine(beginning_state,
                                transition_function)
 
 text = input("insert text: ")
-print(text)
 while not TuringMachine.check_text(text, turing_machine.tape_alphabet):
     text = input("Insert text again: ")
 

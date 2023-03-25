@@ -161,4 +161,6 @@ transitions = turing_machine.simulate_turing_machine(text)
 for t in transitions:
     print(t)
 
-
+# test
+# [ ( 2 3 4 ) # 2 , 3 , 4 ] -> reject
+# [ ( 2 3 , 4 ) # 2 , 3 , 4 ] -> accept
