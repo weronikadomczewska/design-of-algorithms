@@ -6,12 +6,21 @@ from ex2 import *
 from ex3 import *
 
 
-def time_ex1(A, n):
+def time_max_elem(A, n):
     tic = time.time()
     find_max_value(A, n)
+    toc = time.time()
+    return round(toc - tic, 6)
+
+def time_second_max_elem(A, n):
+    tic = time.time()
     find_second_max_value(A, n)
+    toc = time.time()
+    return round(toc - tic, 6)
+
+def time_mean(A, n):
+    tic = time.time()
     calc_mean(A, n)
-    time.sleep(1)
     toc = time.time()
     return round(toc - tic, 6)
 
@@ -50,7 +59,9 @@ if __name__ == "__main__":
     matrix1 = generate_random_square_matrix(n)
     matrix2 = generate_random_square_matrix(n)
 
-    time_ex1(A, n)
+    time_max_elem(A, n)
+    time_second_max_elem(A, n)
+    time_second_max_elem(A, n)
     time_ex2(matrix1, matrix2, n)
     time_ex3(B)
 
