@@ -28,23 +28,23 @@ def multiply_square_matrices(matrix1, matrix2, matrix_size):
         matrix2_col = 0
     return result
 
+if __name__ == "__main__":
+    n = int(input("Enter size of an matrix: "))
 
-n = int(input("Enter size of an matrix: "))
+    matrix1 = np.zeros((n, n))
+    matrix2 = np.zeros((n, n))
 
-matrix1 = np.zeros((n, n))
-matrix2 = np.zeros((n, n))
+    print("Filling first matrix")
+    for i in range(n):
+        for j in range(n):
+            matrix1[i][j] = int(input(f"Enter number on position [{i}][{j}]: "))
 
-print("Filling first matrix")
-for i in range(n):
-    for j in range(n):
-        matrix1[i][j] = int(input(f"Enter number on position [{i}][{j}]: "))
+    print("Filling second matrix")
+    for i in range(n):
+        for j in range(n):
+            matrix2[i][j] = int(input(f"Enter number on position [{i}][{j}]: "))
 
-print("Filling second matrix")
-for i in range(n):
-    for j in range(n):
-        matrix2[i][j] = int(input(f"Enter number on position [{i}][{j}]: "))
-
-print(f"Multiplication result: \n {pandas.DataFrame(multiply_square_matrices(matrix1, matrix2, n))}")
+    print(f"Multiplication result: \n {pandas.DataFrame(multiply_square_matrices(matrix1, matrix2, n))}")
 
 
 

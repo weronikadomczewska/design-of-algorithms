@@ -65,19 +65,18 @@ def calc_mean(lst, number_of_elems):
 
     return sum / number_of_elems
 
+if __name__ == "__main__":
+    n = int(input("Enter number of elements in a list: "))
+    lst = np.zeros(n)
+    for i in range(n):
+        lst[i] = (int(input("Enter a number: ")))
 
-n = int(input("Enter number of elements in a list: "))
-lst = np.zeros(n)
-for i in range(n):
-    lst[i] = (int(input("Enter a number: ")))
 
+    print("Finding maximum value in a list")
+    print(f"Maximum value of a list {list(lst)} is: {find_max_value(lst, n)}")
 
-print("Finding maximum value in a list")
-print(f"Maximum value of a list {list(lst)} is: {find_max_value(lst, n)}")
-print("The time complexity of this algorithm is O(n)")
+    print("Finding second maximum value in a list")
+    print(f"Second maximum value of a list {list(lst)}: {find_second_max_value(lst, n)}")
 
-print("Finding second maximum value in a list")
-print(f"Second maximum value of a list {list(lst)}: {find_second_max_value(lst, n)}")
-
-print("Finding mean of elements in a list:")
-print(f"Mean value of a list {list(lst)}: {calc_mean(lst, n)}")
+    print("Finding mean of elements in a list:")
+    print(f"Mean value of a list {list(lst)}: {calc_mean(lst, n)}")
