@@ -12,28 +12,9 @@ def find_max_elem_dividing(lst):
 
 
 def find_second_max_elem_dividing(lst):
-    if len(lst) < 2:
-        return None
-    elif len(lst) == 2:
-        return min(lst)
-    else:
-        mid = len(lst) // 2
-        left = lst[:mid]
-        right = lst[mid:]
-
-        max_left = find_second_max_elem_dividing(left)
-        max_right = find_second_max_elem_dividing(right)
-
-        if max_left is None:
-            return max_right
-        elif max_right is None:
-            return max_left
-        else:
-            if max_left > max_right:
-                return find_second_max_elem_dividing([x for x in lst if x != max_left])
-            else:
-                return find_second_max_elem_dividing([x for x in lst if x != max_right])
-
+    max_elem = find_max_elem_dividing(lst)
+    lst.remove(max_elem)
+    return find_max_elem_dividing(lst)
 
 def find_mean(lst):
     if len(lst) == 0:

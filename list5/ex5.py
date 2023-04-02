@@ -73,7 +73,7 @@ def get_find_mean_data(max_number_of_data):
 
 
 
-n = 50
+n = int(input("Enter maximum number of numbers in list: "))
 ns = range(1, n+1)
 
 mergesort_times = get_mergesort_data(n)
