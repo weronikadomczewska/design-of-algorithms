@@ -1,5 +1,7 @@
 import numpy as np
 def find_max_elem_dividing(lst):
+    if len(lst) == 0:
+        return None
     if len(lst) == 1:
         return lst[0]
     else:
