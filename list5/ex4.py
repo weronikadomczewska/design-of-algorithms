@@ -1,4 +1,12 @@
+import networkx as nx
+import matplotlib.pyplot as plt
+
+
 def shortest_path(graph, start, end, path=[]):
+
+    """
+    Złożoność: O(V+E)
+    """
     path = path + [start]
     if start == end:
         return path
@@ -11,7 +19,7 @@ def shortest_path(graph, start, end, path=[]):
                     shortest = new_path
     return shortest
 
-graph = {
+g = {
     'A': ['B', 'C'],
     'B': ['A', 'D', 'E'],
     'C': ['A', 'F'],
@@ -20,4 +28,19 @@ graph = {
     'F': ['C', 'E']
 }
 
-print(shortest_path(graph, 'A', 'F'))
+graph = nx.Graph()
+graph.add_nodes_from(g.keys())
+graph.add_edge("A", "B")
+graph.add_edge("A", "C")
+graph.add_edge("B", "D")
+graph.add_edge("B", "E")
+graph.add_edge("E", "F")
+graph.add_edge("C", "F")
+
+print(shortest_path(graph, "F", "D"))
+
+pos = nx.spring_layout(graph)
+nx.draw(graph, pos, with_labels=True, node_color="pink")
+plt.show()
+
+

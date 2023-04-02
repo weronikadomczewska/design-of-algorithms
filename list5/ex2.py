@@ -25,7 +25,7 @@ def find_mean(lst):
 
 
 if __name__ == "__main__":
-    lst = [5, 10, 3, 8, 4, 11, 15, 11, 18, 20, 5, 4, 3, 8, 15, 4, 18, 17, 4, 5, 6, 48, 45, 8]
+    lst = [5, 10, 3, 8, 4, 11, 15, 8, 5]
     print(f"Maximum value of a list {lst}: {find_max_elem_dividing(lst)}")
     print(f"Second maximum value of a list {lst}: {find_second_max_elem_dividing(lst)}")
     print(f"Mean of values of a list {lst}: {find_mean(lst)}")
