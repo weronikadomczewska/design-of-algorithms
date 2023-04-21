@@ -20,7 +20,6 @@ def print_polynomial(poly):
             print()
 
 
-
 if __name__ == "__main__":
     poly1 = [5, 0, 10, 6]
     poly2 = [1, 2, 4]
