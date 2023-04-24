@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from math import sin, cos
-from ex2 import fft
 from scipy.fft import fft, ifft
 
 def generate_samples():
@@ -19,11 +18,9 @@ def generate_samples():
 
     for first_cnt in range(i):
         first_sum.append(As[first_cnt] * sin(small_as[first_cnt] * ts[first_cnt]))
-        # first_sum.append(10 * sin(2 * ts[first_cnt]))
 
     for second_cnt in range(j):
         second_sum.append(Bs[second_cnt] * cos(small_bs[second_cnt] * ts[second_cnt]))
-        # second_sum.append(20 * cos(3 * ts[second_cnt]))
 
     total_sum = []
     for cnt in range(i):
@@ -34,6 +31,7 @@ def generate_samples():
 times, signal = generate_samples()
 fft_signal = fft(signal)
 freqs = np.fft.fftfreq(len(signal), times[1]-times[0])
+print(freqs)
 
 fig, ax = plt.subplots(2, 1)
 ax[0].plot(times, signal)
@@ -44,10 +42,11 @@ plt.tight_layout()
 plt.show()
 
 
-frequencies_to_remove = [0.1, 0.3]
+frequencies_to_remove = np.linspace(0, 0.25)
 for freq in frequencies_to_remove:
     fft_signal[np.where(freqs == freq)] = 0
     fft_signal[np.where(freqs == -freq)] = 0
+
 filtered_signal = ifft(fft_signal)
 fft_filtered_signal = fft(filtered_signal)
 
