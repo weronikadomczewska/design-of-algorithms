@@ -36,7 +36,6 @@ def find_robots_with_given_features_linear(list_of_robots, list_of_requirements)
     return []
 
 
-
 if __name__ == "__main__":
     n = int(input("Enter number of robots: "))
     random_robots = generate_list_of_robots(n)
