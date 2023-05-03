@@ -2,6 +2,7 @@ import random
 import pandas as pd
 import json
 
+
 def generate_random_robot():
     types = ["agv", "afv", "asv", "auv"]
     prices = range(0, 10001)
@@ -26,10 +27,13 @@ def generate_list_of_robots(n):
 def print_list_of_robots_as_table(list_of_robots):
     data = {}
     cnt = 0
-    for robot in list_of_robots:
-        data[f"robot{cnt}"] = robot
-        cnt += 1
     columns = ["type", "price", "range", "camera"]
+    if type(list_of_robots) == dict:
+        data[f"robot0"] = list_of_robots
+    else:
+        for robot in list_of_robots:
+            data[f"robot{cnt}"] = robot
+            cnt += 1
     df = pd.DataFrame.from_dict(data, orient="index", columns=columns)
     print(df)
 
