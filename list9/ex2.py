@@ -17,7 +17,7 @@ def quick_sort_by_price(list_of_robots):
         else:
             greater.append(d)
     sorted_robots = quick_sort_by_price(less) + equal + quick_sort_by_price(greater)
-    print([d["price"] for d in sorted_robots])  # Display the list of prices in each recursive call
+    print([d["price"] for d in sorted_robots])
     return sorted_robots
 
 

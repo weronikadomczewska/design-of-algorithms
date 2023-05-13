@@ -3,10 +3,8 @@ from robot_generator import *
 
 def heap_sort_by_price(list_of_robots):
     n = len(list_of_robots)
-
     for i in range(n // 2 - 1, -1, -1):
         max_heapify(list_of_robots, n, i)
-
     for i in range(n-1, 0, -1):
         list_of_robots[i], list_of_robots[0] = list_of_robots[0], list_of_robots[i]
         max_heapify(list_of_robots, i, 0)
