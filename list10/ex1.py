@@ -34,6 +34,7 @@ class RobotStack:
         self.top = -1
         return cleared_robots
 
+
 if __name__ == "__main__":
     robot_stack = RobotStack(10)
     print("Trying to remove robot from empty stack: ")
