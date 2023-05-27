@@ -1,0 +1,20 @@
+{'type': 'afv', 'price': 7466, 'range': 81, 'camera': 0}
+L,{'type': 'auv', 'price': 6947, 'range': 92, 'camera': 1}
+L,{'type': 'agv', 'price': 5882, 'range': 83, 'camera': 1}
+L,{'type': 'afv', 'price': 529, 'range': 45, 'camera': 0}
+L,{'type': 'agv', 'price': 11, 'range': 97, 'camera': 1}
+R,{'type': 'afv', 'price': 473, 'range': 10, 'camera': 1}
+U,
+U,
+R,{'type': 'afv', 'price': 5609, 'range': 85, 'camera': 1}
+U,
+U,
+U,
+U,
+R,{'type': 'afv', 'price': 9388, 'range': 29, 'camera': 0}
+L,{'type': 'asv', 'price': 8695, 'range': 5, 'camera': 0}
+U,
+R,{'type': 'agv', 'price': 9452, 'range': 69, 'camera': 1}
+U,
+U,
+U,

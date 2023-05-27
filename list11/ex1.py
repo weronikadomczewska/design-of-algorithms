@@ -39,16 +39,13 @@ class BinaryTree:
         if self.root is None:
             print("Tree is empty.")
             return
-
         self.root = self._remove_node_recursive(self.root, data)
 
     def _remove_node_recursive(self, current, data):
         if current is None:
             return None
-
         if current.data == data:
             return None
-
         current.left = self._remove_node_recursive(current.left, data)
         current.right = self._remove_node_recursive(current.right, data)
 
