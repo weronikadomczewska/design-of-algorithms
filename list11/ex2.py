@@ -36,7 +36,7 @@ class BinarySearchTree:
 
     def _search_helper(self, node, value, key):
         if not node or node.robot[key] == value:
-            return node.robot if node else None
+            return node if node else None
         elif value < node.robot[key]:
             return self._search_helper(node.left, value, key)
         else:
@@ -143,6 +143,56 @@ class BinarySearchTree:
             self.postorder_traversal(node.left, key)
             self.postorder_traversal(node.right, key)
             print(node.robot[key])
+
+    def rotate_left(self, node_value, key):
+        self.root = self._rotate_left(self.root, node_value, key)
+
+    def _rotate_left(self, node, node_value, key):
+        if node is None:
+            return None
+
+        if node_value == node.robot[key]:
+            return self._left_rotate(node)
+        elif node_value < node.robot[key]:
+            node.left = self._rotate_left(node.left, node_value, key)
+        else:
+            node.right = self._rotate_left(node.right, node_value, key)
+
+        return node
+
+    def _left_rotate(self, node):
+        if node.right is None:
+            return node
+
+        pivot = node.right
+        node.right = pivot.left
+        pivot.left = node
+        return pivot
+
+    def rotate_right(self, node_value, key):
+        self.root = self._rotate_right(self.root, node_value, key)
+
+    def _rotate_right(self, node, node_value, key):
+        if node is None:
+            return None
+
+        if node_value == node.robot[key]:
+            return self._right_rotate(node)
+        elif node_value < node.robot[key]:
+            node.left = self._rotate_right(node.left, node_value, key)
+        else:
+            node.right = self._rotate_right(node.right, node_value, key)
+
+        return node
+
+    def _right_rotate(self, node):
+        if node.left is None:
+            return node
+
+        pivot = node.left
+        node.left = pivot.right
+        pivot.right = node
+        return pivot
 
 
 if __name__ == "__main__":
