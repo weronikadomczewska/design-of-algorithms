@@ -126,6 +126,24 @@ class BinarySearchTree:
                 self._display_node(node.left, key, indent + '  |__')
                 self._display_node(node.right, key, indent + '  |__')
 
+    def preorder_traversal(self, node, key):
+        if node is not None:
+            print(node.robot[key])
+            self.preorder_traversal(node.left, key)
+            self.preorder_traversal(node.right, key)
+
+    def inorder_traversal(self, node, key):
+        if node is not None:
+            self.inorder_traversal(node.left, key)
+            print(node.robot[key])
+            self.inorder_traversal(node.right, key)
+
+    def postorder_traversal(self, node, key):
+        if node is not None:
+            self.postorder_traversal(node.left, key)
+            self.postorder_traversal(node.right, key)
+            print(node.robot[key])
+
 
 if __name__ == "__main__":
     robots = load_robots_from_file("robots.json")
