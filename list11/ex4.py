@@ -17,8 +17,11 @@ print("Left rotated tree on node 9388:")
 left_rotated_tree = BinarySearchTree()
 for robot in robots:
     left_rotated_tree.insert(robot, key_parameter)
-#
-left_rotated_tree.rotate_left(9388, key_parameter)
+node_to_rotate = left_rotated_tree.search(9388, key_parameter)
+# print(node_to_rotate)
+# left_rotated_tree.rotate_left(9388, key_parameter)
+# left_rotated_tree.display(key_parameter)
+left_rotated_tree.rotate_left(node_to_rotate, key_parameter)
 left_rotated_tree.display(key_parameter)
 
 print("Right rotated tree on node 5882:")
@@ -26,5 +29,9 @@ right_rotated_tree = BinarySearchTree()
 for robot in robots:
     right_rotated_tree.insert(robot, key_parameter)
 
-right_rotated_tree.rotate_right(5882, key_parameter)
+node_to_rotate = right_rotated_tree.search(9388, key_parameter)
+right_rotated_tree.rotate_right(node_to_rotate, key_parameter)
 right_rotated_tree.display(key_parameter)
+#
+# right_rotated_tree.rotate_right(5882, key_parameter)
+# right_rotated_tree.display(key_parameter)

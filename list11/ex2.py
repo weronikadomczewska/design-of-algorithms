@@ -8,6 +8,9 @@ class Node:
         self.left = None
         self.right = None
 
+    def __str__(self):
+        return f"{self.robot}"
+
 class BinarySearchTree:
     def __init__(self):
         self.root = None
@@ -144,55 +147,84 @@ class BinarySearchTree:
             self.postorder_traversal(node.right, key)
             print(node.robot[key])
 
-    def rotate_left(self, node_value, key):
-        self.root = self._rotate_left(self.root, node_value, key)
-
-    def _rotate_left(self, node, node_value, key):
-        if node is None:
-            return None
-
-        if node_value == node.robot[key]:
-            return self._left_rotate(node)
-        elif node_value < node.robot[key]:
-            node.left = self._rotate_left(node.left, node_value, key)
-        else:
-            node.right = self._rotate_left(node.right, node_value, key)
-
-        return node
-
-    def _left_rotate(self, node):
-        if node.right is None:
-            return node
-
+    def rotate_left(self, node, key):
+        if node is None or node.right is None:
+            return
         pivot = node.right
         node.right = pivot.left
         pivot.left = node
-        return pivot
-
-    def rotate_right(self, node_value, key):
-        self.root = self._rotate_right(self.root, node_value, key)
-
-    def _rotate_right(self, node, node_value, key):
-        if node is None:
-            return None
-
-        if node_value == node.robot[key]:
-            return self._right_rotate(node)
-        elif node_value < node.robot[key]:
-            node.left = self._rotate_right(node.left, node_value, key)
+        if node.robot[key] == self.root.robot[key]:
+            self.root = pivot
         else:
-            node.right = self._rotate_right(node.right, node_value, key)
+            parent = self._find_parent(node, key)
+            if parent.left == node:
+                parent.left = pivot
+            else:
+                parent.right = pivot
 
-        return node
-
-    def _right_rotate(self, node):
-        if node.left is None:
-            return node
-
+    def rotate_right(self, node, key):
+        if node is None or node.left is None:
+            return
         pivot = node.left
         node.left = pivot.right
         pivot.right = node
-        return pivot
+        if node.robot[key] == self.root.robot[key]:
+            self.root = pivot
+        else:
+            parent = self._find_parent(node, key)
+            if parent.left == node:
+                parent.left = pivot
+            else:
+                parent.right = pivot
+
+    def _find_parent(self, node, key):
+        current = self.root
+        parent = None
+        while current is not None and current != node:
+            parent = current
+            if node.robot[key] < current.robot[key]:
+                current = current.left
+            else:
+                current = current.right
+        return parent
+
+    # def rotate_left(self, node_value, key):
+    #     self.root = self._rotate_left(self.root, node_value, key)
+    #
+    # def _rotate_left(self, node, node_value, key):
+    #     if node is None or node.right is None:
+    #         return None
+    #     if node_value == node.robot[key]:
+    #         if node.right is None:
+    #             return node
+    #         pivot = node.right
+    #         node.right = pivot.left
+    #         pivot.left = node
+    #         return pivot
+    #     elif node_value < node.robot[key]:
+    #         node.left = self._rotate_left(node.left, node_value, key)
+    #     else:
+    #         node.right = self._rotate_left(node.right, node_value, key)
+    #     return node
+
+    # def rotate_right(self, node_value, key):
+    #     self.root = self._rotate_right(self.root, node_value, key)
+
+    # def _rotate_right(self, node, node_value, key):
+    #     if node is None:
+    #         return None
+    #     if node_value == node.robot[key]:
+    #         if node.left is None:
+    #             return node
+    #         pivot = node.left
+    #         node.left = pivot.right
+    #         pivot.right = node
+    #         return pivot
+    #     elif node_value < node.robot[key]:
+    #         node.left = self._rotate_right(node.left, node_value, key)
+    #     else:
+    #         node.right = self._rotate_right(node.right, node_value, key)
+    #     return node
 
 
 if __name__ == "__main__":
