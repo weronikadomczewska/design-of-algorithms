@@ -2,10 +2,20 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import json
 import random
+from collections import deque
 
 class Graph:
     def __init__(self):
         self.edges = {}
+
+    def __str__(self):
+        return str(self.edges)
+
+    def to_dict(self):
+        return self.edges
+
+    def from_dict(self, graph_dict):
+        self.edges = graph_dict
 
     def add_node(self, node):
         if node not in self.edges:
@@ -55,16 +65,6 @@ class Graph:
         nx.draw(G, pos, with_labels=True, arrows=True)
         plt.show()
 
-    # def dfs(self, start_node):
-    #     visited = set()
-    #     self._dfs_recursive(start_node, visited)
-    #
-    # def _dfs_recursive(self, node, visited):
-    #     visited.add(node)
-    #     for neighbor in self.edges[node]:
-    #         if neighbor not in visited:
-    #             self._dfs_recursive(neighbor, visited)
-
     def visualize_dfs(self, start_vertex, nodes_pos):
         visited = set()
         self._visualize_dfs_recursive(start_vertex, visited, nodes_pos)
@@ -89,14 +89,43 @@ class Graph:
                 self._visualize_dfs_recursive(neighbor, visited, nodes_pos)
         plt.pause(0.5)
 
-    def __str__(self):
-        return str(self.edges)
+    def topological_sort(self):
+        indegree = {node: 0 for node in self.edges}
+        for neighbors in self.edges.values():
+            for neighbor in neighbors:
+                indegree[neighbor] += 1
+        queue = deque()
+        for node, count in indegree.items():
+            if count == 0:
+                queue.append(node)
+        sorted_nodes = []
+        while queue:
+            node = queue.popleft()
+            sorted_nodes.append(node)
+            for neighbor in self.edges[node]:
+                indegree[neighbor] -= 1
+                if indegree[neighbor] == 0:
+                    queue.append(neighbor)
+        return sorted_nodes
 
-    def to_dict(self):
-        return self.edges
+    def visualize_topological_sort(self, nodes_pos):
+        sorted_nodes = self.topological_sort()
 
-    def from_dict(self, graph_dict):
-        self.edges = graph_dict
+        G = nx.DiGraph(self.edges)
+        plt.clf()
+        nx.draw(G, nodes_pos, with_labels=True, node_color='lightblue', node_size=500, font_weight='bold')
+        nx.draw_networkx_edges(G, nodes_pos, edgelist=G.edges(), arrows=True)
+
+        for i, node in enumerate(sorted_nodes):
+            node_color = [0.8] * len(sorted_nodes)
+            node_color[i] = random.random()  # Assign a random color to the current node
+            nx.draw_networkx_nodes(G, nodes_pos, nodelist=[node], node_color=node_color[i], node_size=500)
+
+            sorted_labels = {n: str(n) for n in sorted_nodes[:i + 1]}
+            nx.draw_networkx_labels(G, nodes_pos, labels=sorted_labels, font_color='black')
+
+            plt.pause(1)  # Pause for 1 second to visualize each step
+            plt.show()
 
 
 if __name__ == "__main__":
@@ -140,6 +169,9 @@ if __name__ == "__main__":
 
     graph.save_graph_to_file("testgraph.json")
     graph_from_file = Graph()
+    plt.ion()
     graph_from_file.load_graph_from_file("testgraph.json")
-    print(graph_from_file.edges)
-    graph_from_file.visualize_dfs(1, fixed_layout)
+    # graph_from_file.visualize_dfs(1, fixed_layout)
+    graph_from_file.visualize_topological_sort(fixed_layout)
+    plt.ioff()
+    plt.show()
