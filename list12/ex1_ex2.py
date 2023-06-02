@@ -118,13 +118,13 @@ class Graph:
 
         for i, node in enumerate(sorted_nodes):
             node_color = [0.8] * len(sorted_nodes)
-            node_color[i] = random.random()  # Assign a random color to the current node
+            node_color[i] = random.random()
             nx.draw_networkx_nodes(G, nodes_pos, nodelist=[node], node_color=node_color[i], node_size=500)
 
             sorted_labels = {n: str(n) for n in sorted_nodes[:i + 1]}
             nx.draw_networkx_labels(G, nodes_pos, labels=sorted_labels, font_color='black')
 
-            plt.pause(1)  # Pause for 1 second to visualize each step
+            plt.pause(1)
             plt.show()
 
 
@@ -169,9 +169,9 @@ if __name__ == "__main__":
 
     graph.save_graph_to_file("testgraph.json")
     graph_from_file = Graph()
-    plt.ion()
     graph_from_file.load_graph_from_file("testgraph.json")
-    # graph_from_file.visualize_dfs(1, fixed_layout)
+    graph_from_file.visualize_dfs(1, fixed_layout)
+    plt.ion()
     graph_from_file.visualize_topological_sort(fixed_layout)
     plt.ioff()
     plt.show()
