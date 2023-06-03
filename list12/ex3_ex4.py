@@ -2,7 +2,7 @@ from collections import defaultdict
 import heapq
 import networkx as nx
 import matplotlib.pyplot as plt
-import random
+
 
 class WeightedGraph:
     def __init__(self):
@@ -62,6 +62,82 @@ class WeightedGraph:
         plt.axis('off')
         plt.show()
 
+    def find(self, parent, i):
+        if parent[i] == i:
+            return i
+        return self.find(parent, parent[i])
+
+    def union(self, parent, rank, x, y):
+        x_root = self.find(parent, x)
+        y_root = self.find(parent, y)
+
+        if rank[x_root] < rank[y_root]:
+            parent[x_root] = y_root
+        elif rank[x_root] > rank[y_root]:
+            parent[y_root] = x_root
+        else:
+            parent[y_root] = x_root
+            rank[x_root] += 1
+
+    def kruskal(self):
+        minimum_spanning_tree = []
+        parent = {}
+        rank = {}
+
+        for node in self.get_all_nodes():
+            parent[node] = node
+            rank[node] = 0
+
+        edges = []
+
+        for u, neighbors in self.graph.items():
+            for v, weight in neighbors:
+                edges.append((u, v, weight))
+
+        edges.sort(key=lambda x: x[2])
+
+        for u, v, weight in edges:
+            x = self.find(parent, u)
+            y = self.find(parent, v)
+
+            if x!= y:
+                minimum_spanning_tree.append((u, v, weight))
+                self.union(parent, rank, x, y)
+                self.visualize_kruskal_step(u, v)
+
+        return minimum_spanning_tree
+
+    def visualize_kruskal_step(self, u, v):
+        G = nx.Graph()
+        G.add_weighted_edges_from([(u, v, weight) for u, neighbors in self.graph.items() for v, weight in neighbors])
+
+        node_colors = ['lightgray' for _ in G.nodes()]
+        edge_colors = ['gray' for _ in G.edges()]
+
+        pos = nx.spring_layout(G)
+        nx.draw_networkx(G, pos, with_labels=True, node_color=node_colors, font_size=8, edge_color=edge_colors)
+        edge_labels = nx.get_edge_attributes(G, 'weight')
+        nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_size=6)
+        nx.draw_networkx_edges(G, pos, edgelist=[(u, v)], edge_color='red', width=2)
+
+        plt.axis('off')
+        plt.pause(0.75)
+        plt.clf()
+
+    def visualize_minimum_spanning_tree(self, minimum_spanning_tree):
+        G = nx.Graph()
+        G.add_weighted_edges_from([(u, v, weight) for u, neighbors in self.graph.items() for v, weight in neighbors])
+
+        node_colors = ['lightgray' for _ in G.nodes()]
+        edge_colors = ['gray' for _ in G.edges()]
+
+        pos = nx.spring_layout(G)
+        nx.draw_networkx(G, pos, with_labels=True, node_color=node_colors, font_size=8, edge_color=edge_colors)
+        nx.draw_networkx_edges(G, pos, edgelist=minimum_spanning_tree, edge_color='red', width=2)
+
+        plt.axis('off')
+        plt.show()
+
 
 if __name__ == "__main__":
     graph = WeightedGraph()
@@ -92,7 +168,13 @@ if __name__ == "__main__":
             graph.add_edge(node, neighbor, weights[i])
             i += 1
 
-    graph.visualise_dijkstra(1, 10)
+    # graph.visualise_dijkstra(1, 10)
+    mst = graph.kruskal()
+
+    for u, v, weight in mst:
+        graph.visualize_kruskal_step(u, v)
+    graph.visualize_minimum_spanning_tree(mst)
+
 
 
 
